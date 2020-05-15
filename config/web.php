@@ -2,19 +2,23 @@
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+$log = require __DIR__ . '/log.php';
 
 $config = [
-    'id' => 'basic',
+    'id' => 'mp_ringme_mis',
+	'name' => '一环管理后台',
     'basePath' => dirname(__DIR__),
+	'version' => '1.0.0',
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+	'defaultRoute' => 'site/index',
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => '',
+            'cookieValidationKey' => '1h_xPhrXaq0yMd8b5wE07R371WJ2pdzc',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -32,8 +36,9 @@ $config = [
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
             'useFileTransport' => true,
-        ],
-        'log' => [
+		],
+		'log' => $log,
+        /*'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
                 [
@@ -41,16 +46,15 @@ $config = [
                     'levels' => ['error', 'warning'],
                 ],
             ],
-        ],
+		],*/
         'db' => $db,
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
+        
     ],
     'params' => $params,
 ];
